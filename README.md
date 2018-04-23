@@ -24,7 +24,7 @@ console.log("drawCall", inspector.count);
 inspector.resetCount();
 ```
 
-### Detach debugger
+## Detach debugger
 ```
 webglDebug.detach(WebGLRenderingDebugger.Inspectors.DRAW_CALLS);
 ```

@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es5",
     "module": "esnext",
     "lib": [
-      "esnext"
+      "esnext",
+      "dom"
     ],
 
     "baseUrl": "./src",
-    "outDir": "./ts",
+    "outDir": "./lib-ts",
     "declaration": true,
     "sourceMap": true,
 
@@ -36,7 +37,7 @@
     "bin"
   ],
   "typedocOptions": {
-    "name": "webgl-debugger",
+    "name": "webgl-rendering-debugger",
     "mode": "file",
     "out": "./docs",
     "gitRevision": "develop",

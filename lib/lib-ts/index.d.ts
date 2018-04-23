@@ -1,4 +1,5 @@
 import Inspector from 'interface/Inspector';
+import { WebGLRenderingDebuggerError } from 'error';
 import { DrawCall } from 'inspectors';
 /**
  * WebGLRenderingDebugger
@@ -39,6 +40,7 @@ declare class WebGLRenderingDebugger {
      * TODO: Assure atomicity with invokations.
      */
     private invokationsInspectorKeyCache;
+    static createInspector(inspectorId: string): Inspector | null;
     /**
      * C'tor
      */
@@ -51,13 +53,16 @@ declare class WebGLRenderingDebugger {
      * Attaches inspector to WebGLRenderingContext instance.
      */
     attach(inspectorId: string): void;
+    private attachInspector(targetProperty, inspectorId, task);
     /**
      * Detaches inspector from WebGLRenderingContext instance.
      */
     detach(inspectorId: string): void;
+    private detachInspector(targetProperty, inspectorId);
+    private restorePropertyIfNeeded(targetProperty);
     /**
      * Replacing WebGLRenderingContext method to invoke inspector's tasks
      */
     private replaceContextMethod(targetProperty);
 }
-export { WebGLRenderingDebugger as default, DrawCall };
+export { WebGLRenderingDebugger as default, DrawCall, WebGLRenderingDebuggerError };

@@ -8,42 +8,49 @@ const plugins = [
   new webpack.optimize.AggressiveMergingPlugin()
 ];
 
-module.exports = {
-  entry: {
-    index: path.join(__dirname, 'src', 'index.ts'),
-  },
+module.exports = (env, argv) => {
+  const mode = process.env.NODE_ENV || process.env.WEBPACK_ENV || argv.mode || 'development';
 
-  output: {
-    path: path.join(__dirname, 'lib'),
-    filename: 'webgl-rendering-debugger.js',
-    library: 'webgl-rendering-debugger',
-    libraryTarget: 'umd'
-  },
+  return {
+    mode: mode,
+    entry: {
+      index: path.join(__dirname, 'src', 'index.ts'),
+    },
 
-  module: {
-    rules: [
-      {
-        test: /\.ts$/,
-        exclude: /node_modules/,
-        use: [
-          { loader: 'ts-loader' }
-        ]
-      }
-    ]
-  },
+    output: {
+      path: path.join(__dirname, 'lib'),
+      filename: (mode === 'production')
+        ? 'webgl-rendering-debugger.min.js'
+        : 'webgl-rendering-debugger.js',
+      library: 'webgl-rendering-debugger',
+      libraryTarget: 'umd'
+    },
 
-  resolve: {
-    extensions: ['.ts'],
-    modules: [
-      path.resolve('./src'),
-      "node_modules"
-    ]
-  },
+    module: {
+      rules: [
+        {
+          test: /\.ts$/,
+          exclude: /node_modules/,
+          use: [
+            { loader: 'ts-loader' }
+          ]
+        }
+      ]
+    },
 
-  node: {
-    fs: 'empty'
-  },
+    resolve: {
+      extensions: ['.ts'],
+      modules: [
+        path.resolve('./src'),
+        "node_modules"
+      ]
+    },
 
-  devtool: false,
-  plugins: plugins
+    node: {
+      fs: 'empty'
+    },
+
+    devtool: false,
+    plugins: plugins
+  }
 };
