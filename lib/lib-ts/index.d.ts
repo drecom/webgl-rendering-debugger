@@ -1,6 +1,6 @@
 import Inspector from 'interface/Inspector';
 import { WebGLRenderingDebuggerError } from 'error';
-import { DrawCall } from 'inspectors';
+import { DrawCall, Polygon } from 'inspectors';
 /**
  * WebGLRenderingDebugger
  *
@@ -65,4 +65,4 @@ declare class WebGLRenderingDebugger {
      */
     private replaceContextMethod(targetProperty);
 }
-export { WebGLRenderingDebugger as default, DrawCall, WebGLRenderingDebuggerError };
+export { WebGLRenderingDebugger as default, DrawCall, Polygon, WebGLRenderingDebuggerError };

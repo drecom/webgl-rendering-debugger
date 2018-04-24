@@ -1,6 +1,6 @@
 import Inspector from 'interface/Inspector';
 import { WebGLRenderingDebuggerError } from 'error';
-import { InspectorIds, DrawCall } from 'inspectors';
+import { InspectorIds, DrawCall, Polygon } from 'inspectors';
 
 /**
  * WebGLRenderingDebugger
@@ -50,6 +50,7 @@ class WebGLRenderingDebugger {
   public static createInspector(inspectorId: string): Inspector | null {
     switch (inspectorId) {
       case InspectorIds.DRAW_CALLS: return new DrawCall();
+      case InspectorIds.POLYGON   : return new Polygon();
       default: return null;
     }
   }
@@ -173,4 +174,4 @@ class WebGLRenderingDebugger {
   }
 }
 
-export { WebGLRenderingDebugger as default, DrawCall, WebGLRenderingDebuggerError };
+export { WebGLRenderingDebugger as default, DrawCall, Polygon, WebGLRenderingDebuggerError };
