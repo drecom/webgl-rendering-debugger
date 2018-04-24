@@ -50,7 +50,7 @@ module.exports = (env, argv) => {
       fs: 'empty'
     },
 
-    devtool: false,
+    devtool: (mode === 'production') ? false : 'source-map',
     plugins: plugins
   }
 };

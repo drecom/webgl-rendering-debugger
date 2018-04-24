@@ -6,15 +6,12 @@ module.exports = function(config) {
     frameworks: ['mocha'],
 
     preprocessors: {
-      'test/**/*.js': ['webpack'],
+      'test/**/*.js': ['webpack']
     },
 
     // files
     files: [
-      'lib/webgl-rendering-debugger.js',
-      'test/index.js',
-    ],
-    exclude: [
+      'test/index.js'
     ],
 
     // logs
@@ -44,6 +41,8 @@ module.exports = function(config) {
     // webpack preprocessor config
     webpack: {
       mode: 'development',
+
+      devtool: 'source-map',
 
       module: {
         rules: [
