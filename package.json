@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "debugs WebGL rendering",
   "main": "lib/webgl-rendering-debugger.js",
-  "typings": "lib/ts/index.d.ts",
+  "typings": "lib/lib-ts/index.d.ts",
   "scripts": {
     "build:dev": "webpack --mode development",
     "build:prod": "webpack --mode production",
