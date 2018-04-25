@@ -5,15 +5,15 @@ import { InspectorIds, DrawCall, Polygon } from 'inspectors';
 /**
  * WebGLRenderingDebugger
  *
- * It attaches inspector to WebGLRenderingContext instance.
- * Each of inspectors may want to invoke there task in WebGLRenderingContext's method.
- * This class controlls method wrapping and restoring.
- *
+ * It attaches inspector to WebGLRenderingContext instance.<br />
+ * Each of inspectors may want to invoke there task in WebGLRenderingContext's method.<br />
+ * This class controlls method wrapping and restoring.<br />
+ * <br />
  * NOTE: This is a debugging tool therefore its behavior may affect to performance.
  */
 class WebGLRenderingDebugger {
   /**
-   * public API to provide INSPECTOR_IDS to user.
+   * public API to provide [[InspectorIds]] to user.
    */
   public static Inspectors: { [index: string]: string } = InspectorIds;
 
@@ -23,8 +23,8 @@ class WebGLRenderingDebugger {
   private context!: any;
 
   /**
-   * Instances of Inspector.
-   * index is one of INSPECTOR_IDS.
+   * Instances of [[Inspector]].<br />
+   * index is one of [[InspectorIds]].
    */
   private inspectors!: { [name: string]: Inspector };
   /**
@@ -32,7 +32,7 @@ class WebGLRenderingDebugger {
    */
   private preservations!: { [property: string]: Function  };
   /**
-   * A Container for invoking tasks of inspectors.
+   * A container for invoking tasks of inspectors.<br />
    * Each array of tasks is related to wrapping method name.
    */
   private invokations!: {
@@ -42,7 +42,7 @@ class WebGLRenderingDebugger {
   };
 
   /**
-   * Key cache to avoid collecting keys in invoked method.
+   * Key cache to avoid collecting keys in invoked method.<br />
    * TODO: Assure atomicity with invokations.
    */
   private invokationsInspectorKeyCache!: { [property:string]: string[] };
@@ -67,7 +67,7 @@ class WebGLRenderingDebugger {
   }
 
   /**
-   * Returns Inspector implements as generic argument type.
+   * Returns [[Inspector]] implements as generic argument type.
    */
   public getAttachedInstpector<T extends Inspector>(name: string): T {
     return this.inspectors[name] as T;
@@ -97,6 +97,9 @@ class WebGLRenderingDebugger {
     }
   }
 
+  /**
+   * Attaches inspector tasks to perticular property on WebGLRenderingContext instance.
+   */
   private attachInspector(targetProperty: string, inspectorId: string, task: Function[]): void {
     if (!this.invokations.hasOwnProperty(targetProperty)) {
       this.invokations[targetProperty] = {};
@@ -129,6 +132,9 @@ class WebGLRenderingDebugger {
     delete this.inspectors[inspectorId];
   }
 
+  /**
+   * Detaches inspector tasks from perticular property on WebGLRenderingContext instance.
+   */
   private detachInspector(targetProperty: string, inspectorId: string): void {
     if (!this.invokations[targetProperty].hasOwnProperty(inspectorId)) {
       return;
@@ -141,6 +147,10 @@ class WebGLRenderingDebugger {
     }
   }
 
+  /**
+   * Restore WebGLRenderingContext instance's property to its original one<br />
+   * if [[invokations]]'s target property does not have any property.
+   */
   private restorePropertyIfNeeded(targetProperty: string): void {
     // restore target property if all inspectors are removed
     if (Object.keys(this.invokations[targetProperty]).length > 0) {

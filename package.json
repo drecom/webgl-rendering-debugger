@@ -7,10 +7,11 @@
   "scripts": {
     "build:dev": "webpack --mode development",
     "build:prod": "webpack --mode production",
-    "lint": "tslint -p tsconfig.json --format stylish \"src/**/*.ts*\"",
+    "build:doc": "typedoc 'src/'",
+    "lint": "tslint -p tsconfig.json --format stylish 'src/**/*.ts*'",
     "test": "karma start",
-    "workflow:build": "npm run build:dev; npm run build:prod",
-    "workflow:test": "npm run lint; npm run test"
+    "workflow:build": "npm run build:dev && npm run build:prod && npm run build:doc",
+    "workflow:test": "npm run lint && npm run test"
   },
   "author": "Drecom Co.,Ltd.",
   "license": "MIT",
@@ -31,6 +32,7 @@
     "ts-loader": "^4.2.0",
     "tslint": "^5.9.1",
     "tslint-config-airbnb": "^5.8.0",
+    "typedoc": "^0.11.1",
     "typemoq": "^2.1.0",
     "typescript": "^2.8.1",
     "webpack": "^4.5.0",
