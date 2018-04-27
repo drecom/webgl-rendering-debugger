@@ -1,4 +1,10 @@
 import Inspector from 'interface/Inspector';
+/**
+ * DrawCall
+ *
+ * [[Inspector]] implementation to inspect draw calls.<br />
+ * It invokes count incrementing tasks on WebGL draw commands.
+ */
 export default class DrawCall implements Inspector {
     /**
      * Draw call count

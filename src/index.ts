@@ -15,7 +15,7 @@ class WebGLRenderingDebugger {
   /**
    * public API to provide [[InspectorIds]] to user.
    */
-  public static Inspectors: { [index: string]: string } = InspectorIds;
+  public static Inspectors: typeof InspectorIds = InspectorIds;
 
   /**
    * Although no typings, it expects WebGLRenderingContext instance.
