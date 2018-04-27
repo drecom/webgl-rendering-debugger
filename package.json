@@ -4,6 +4,10 @@
   "description": "debugs WebGL rendering",
   "main": "lib/webgl-rendering-debugger.js",
   "typings": "lib/lib-ts/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drecom/webgl-rendering-debugger.git"
+  },
   "scripts": {
     "build:dev": "webpack --mode development",
     "build:prod": "webpack --mode production",
@@ -13,6 +17,15 @@
     "workflow:build": "npm run build:dev && npm run build:prod && npm run build:doc",
     "workflow:test": "npm run lint && npm run test"
   },
+  "keywords": [
+    "performance",
+    "webgl",
+    "debugger"
+  ],
+  "bugs": {
+    "url": "https://github.com/drecom/webgl-rendering-debugger/issues"
+  },
+  "homepage": "https://github.com/drecom/webgl-rendering-debugger",
   "author": "Drecom Co.,Ltd.",
   "license": "MIT",
   "dependencies": {},
